@@ -1,6 +1,8 @@
 import "@styles/globals.css";
 import { Poppins } from "next/font/google";
 import type { Metadata } from "next";
+import Nav from "@components/Nav";
+import Provider from "@components/Provider";
 
 export const metadata: Metadata = {
   title: "Prompt Central",
@@ -25,7 +27,10 @@ export default function RootLayout({
         <div className="main">
           <div className="gradient" />
         </div>
-        <main className="app">{children}</main>
+        <main className="app">
+          <Nav />
+          {children}
+        </main>
       </body>
     </html>
   );

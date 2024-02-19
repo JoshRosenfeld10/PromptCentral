@@ -1,3 +1,5 @@
+import Feed from "@components/Feed";
+
 function Home() {
   return (
     <div className="w-full flex-center flex-col">
@@ -10,6 +12,7 @@ function Home() {
         Prompt Central is an open-source AI prompting tool for modern world to
         discover, create and share creative prompts
       </p>
+      <Feed />
     </div>
   );
 }
