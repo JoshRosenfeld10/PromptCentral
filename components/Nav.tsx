@@ -12,7 +12,8 @@ type providerType = Record<
 > | null;
 
 function Nav() {
-  const isUserLoggedIn = true;
+  const { data: session } = useSession();
+
   const [providers, setProviders] = useState<providerType>(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
@@ -36,7 +37,7 @@ function Nav() {
         <p className="logo_text">Prompt Center</p>
       </Link>
       <div className="sm:flex hidden">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             {" "}
             <Link href="/create-prompt" className="black_btn">
@@ -68,13 +69,15 @@ function Nav() {
                   key={provider.name}
                   onClick={() => signIn(provider.id)}
                   className="black_btn"
-                ></button>
+                >
+                  Sign in
+                </button>
               ))}
           </>
         )}
       </div>
       <div className="sm:hidden flex relative">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex">
             <Image
               src="/assets/images/logo.svg"
@@ -122,7 +125,9 @@ function Nav() {
                   key={provider.name}
                   onClick={() => signIn(provider.id)}
                   className="black_btn"
-                ></button>
+                >
+                  Sign in
+                </button>
               ))}
           </>
         )}
