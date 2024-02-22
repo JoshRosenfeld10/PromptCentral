@@ -49,7 +49,7 @@ function ProfilePage() {
   return (
     <Profile
       name="My"
-      desc="Welcome to your personalized profile page"
+      desc="Welcome to your profile page. Here you can view, edit, or delete your prompts."
       data={posts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}
