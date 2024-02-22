@@ -17,7 +17,21 @@ function ProfilePage() {
     router.push(`/update-prompt?id=${post._id}`);
   };
 
-  const handleDelete = async (post: PromptType) => {};
+  const handleDelete = async (post: PromptType) => {
+    const hasConfirmed = confirm(
+      "Are you sure you want to delete this prompt?"
+    );
+
+    if (hasConfirmed) {
+      try {
+        await axios.delete(`/api/prompt/${(post._id, toString())}`);
+        const filteredPosts = posts.filter((p) => p._id !== post._id);
+        setPosts(filteredPosts);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   const fetchPosts = async () => {
     const response = await axios.get(`/api/users/${session?.user.id}/posts`);
