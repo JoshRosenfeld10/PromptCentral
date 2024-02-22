@@ -1,4 +1,6 @@
 import { Schema, model, models } from "mongoose";
+import { UserType } from "./user";
+import { ObjectId } from "mongodb";
 
 const PromptSchema = new Schema({
     creator: {
@@ -16,5 +18,12 @@ const PromptSchema = new Schema({
 });
 
 const Prompt = models.Prompt || model('Prompt', PromptSchema);
+
+export type PromptType = {
+    prompt: string;
+    tag: string;
+    creator?: UserType | null | undefined;
+    _id?: ObjectId
+}
 
 export default Prompt;
