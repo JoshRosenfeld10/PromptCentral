@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useState } from "react";
 import { PromptType } from "@models/prompt";
+import { useSession } from "next-auth/react";
+import { usePathname, useRouter } from "next/navigation";
 
 interface Props {
   post: PromptType;
@@ -13,6 +15,10 @@ interface Props {
 
 function PromptCard({ post, handleTagClick, handleEdit, handleDelete }: Props) {
   const [copied, setCopied] = useState("");
+
+  const { data: session }: { data: any } = useSession();
+  const pathName = usePathname();
+  const router = useRouter;
 
   const handleCopy = () => {
     setCopied(post.prompt);
@@ -58,8 +64,26 @@ function PromptCard({ post, handleTagClick, handleEdit, handleDelete }: Props) {
         className="font-inter text-sm blue_gradient cursor-pointer"
         onClick={() => handleTagClick && handleTagClick(post.tag)}
       >
-        {post.tag}
+        #{post.tag}
       </p>
+
+      {session?.user.id === (post.creator as any)._id &&
+        pathName === "/profile" && (
+          <div className="mt-5 flex-center gap-4 border-t border-gray-100 pt-3">
+            <p
+              className="font-inter text-sm green_gradient cursor-pointer"
+              onClick={handleEdit}
+            >
+              Edit
+            </p>
+            <p
+              className="font-inter text-sm orange_gradient cursor-pointer"
+              onClick={handleDelete}
+            >
+              Delete
+            </p>
+          </div>
+        )}
     </div>
   );
 }

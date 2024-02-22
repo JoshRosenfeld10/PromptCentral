@@ -9,12 +9,15 @@ import { PromptType } from "@models/prompt";
 
 function ProfilePage() {
   const { data: session }: { data: any } = useSession();
+  const router = useRouter();
 
   const [posts, setPosts] = useState<PromptType[]>([]);
 
-  const handleEdit = () => {};
+  const handleEdit = (post: PromptType) => {
+    router.push(`/update-prompt?id=${post._id}`);
+  };
 
-  const handleDelete = async () => {};
+  const handleDelete = async (post: PromptType) => {};
 
   const fetchPosts = async () => {
     const response = await axios.get(`/api/users/${session?.user.id}/posts`);

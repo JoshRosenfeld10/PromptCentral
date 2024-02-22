@@ -10,7 +10,6 @@ interface Props {
 }
 
 function Profile({ name, desc, data, handleEdit, handleDelete }: Props) {
-  console.log(`Data: ${data}`);
   return (
     <div className="w-full">
       <h1 className="head_text text-left">
