@@ -49,7 +49,8 @@ function Feed() {
       (item) =>
         regex.test(item.creator?.username as string) ||
         regex.test(item.tag) ||
-        regex.test(item.prompt)
+        regex.test(item.prompt) ||
+        regex.test(item.creator?.email as string)
     );
   };
 
