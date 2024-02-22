@@ -24,7 +24,7 @@ function ProfilePage() {
 
     if (hasConfirmed) {
       try {
-        await axios.delete(`/api/prompt/${(post._id, toString())}`);
+        await axios.delete(`/api/prompt/${post._id}`);
         const filteredPosts = posts.filter((p) => p._id !== post._id);
         setPosts(filteredPosts);
       } catch (error) {
