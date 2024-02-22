@@ -55,13 +55,11 @@ function Feed() {
 
   const handleTagClick = (tag: string) => {
     setSearchText(tag);
-
-    setSearchResults(filterPrompts(tag));
   };
 
-  const handleSearchChange = (e: InputEvent) => {
-    setSearchText((e.target as HTMLInputElement).value);
-  };
+  useEffect(() => {
+    setSearchResults(filterPrompts(searchText));
+  }, [searchText]);
 
   return (
     <div className="feed">
