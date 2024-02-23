@@ -42,13 +42,15 @@ const handler = NextAuth({
                 const userExists = await User.findOne({
                     email: profile?.email
                 });
+
+                console.log(profile);
                 
                 // Create new user if user not found
                 if (!userExists) {
                     await User.create({
                         email: profile?.email,
                         username: profile?.name?.replace(" ", "").toLowerCase(),
-                        image: profile?.image
+                        image: (profile as any).picture
                     })
                 }
 
