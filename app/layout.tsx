@@ -3,9 +3,6 @@ import { Poppins } from "next/font/google";
 import type { Metadata } from "next";
 import Nav from "@components/Nav";
 import Provider from "@components/Provider";
-import { Session } from "next-auth";
-import type { AppProps } from "next/app";
-import type { LayoutProps } from "@.next/types/app/layout";
 
 export const metadata: Metadata = {
   title: "Prompt Central",
