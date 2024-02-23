@@ -1,7 +1,7 @@
 "use client";
 
 import Form from "@components/Form";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -13,9 +13,8 @@ interface UpdatePromptData {
 
 function UpdatePrompt() {
   const router = useRouter();
-  // const searchParams = useSearchParams();
-  // const promptId = searchParams.get("id") as string; // Get ID from search params
-  const promptId = "test";
+  const searchParams = useSearchParams();
+  const promptId = searchParams.get("id") as string; // Get ID from search params
 
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
@@ -65,13 +64,15 @@ function UpdatePrompt() {
   };
 
   return (
-    <Form
-      type="Edit"
-      post={post}
-      setPost={setPost}
-      submitting={submitting}
-      handleSubmit={updatePrompt}
-    />
+    <Suspense fallback={<>Loading...</>}>
+      <Form
+        type="Edit"
+        post={post}
+        setPost={setPost}
+        submitting={submitting}
+        handleSubmit={updatePrompt}
+      />
+    </Suspense>
   );
 }
 
