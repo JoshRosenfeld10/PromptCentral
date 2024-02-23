@@ -22,21 +22,21 @@ function UpdatePrompt() {
     tag: "",
   });
 
-  useEffect(() => {
-    const getPromptDetails = async () => {
-      const response = await axios.get(`/api/prompt/${promptId}`);
-      const prompt: UpdatePromptData = response.data;
+  // useEffect(() => {
+  //   const getPromptDetails = async () => {
+  //     const response = await axios.get(`/api/prompt/${promptId}`);
+  //     const prompt: UpdatePromptData = await response.data;
 
-      setPost({
-        prompt: prompt.prompt,
-        tag: prompt.tag,
-      });
-    };
+  //     setPost({
+  //       prompt: prompt.prompt,
+  //       tag: prompt.tag,
+  //     });
+  //   };
 
-    if (promptId) {
-      getPromptDetails();
-    }
-  }, [promptId]);
+  //   if (promptId) {
+  //     getPromptDetails();
+  //   }
+  // }, [promptId]);
 
   const updatePrompt = async (e: React.FormEvent) => {
     e.preventDefault();
