@@ -17,13 +17,12 @@ const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-export default function RootLayout({
-  children,
-  session,
-}: {
+interface Props {
   children: React.ReactNode;
   session: Session;
-}) {
+}
+
+export default function RootLayout({ children, session }: Props) {
   return (
     <html lang="en">
       <body className={poppins.className}>
