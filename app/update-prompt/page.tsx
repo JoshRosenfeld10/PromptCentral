@@ -5,13 +5,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
 
-interface EditPromptData {
+interface UpdatePromptData {
   prompt: string;
   userId: string;
   tag: string;
 }
 
-function EditPrompt() {
+function UpdatePrompt() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const promptId = searchParams.get("id"); // Get ID from search params
@@ -24,10 +24,8 @@ function EditPrompt() {
 
   useEffect(() => {
     const getPromptDetails = async () => {
-      const response = await axios.get<EditPromptData>(
-        `/api/prompt/${promptId}`
-      );
-      const prompt: EditPromptData = response.data;
+      const response = await axios.get(`/api/prompt/${promptId}`);
+      const prompt: UpdatePromptData = response.data;
 
       setPost({
         prompt: prompt.prompt,
@@ -76,4 +74,4 @@ function EditPrompt() {
   );
 }
 
-export default EditPrompt;
+export default UpdatePrompt;
