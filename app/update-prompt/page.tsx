@@ -1,12 +1,11 @@
 "use client";
 
 import Form from "@components/Form";
-import { FormEvent, useEffect, useState } from "react";
-import { Post } from "@components/Form";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export interface EditPromptData {
+interface EditPromptData {
   prompt: string;
   userId: string;
   tag: string;
@@ -18,7 +17,7 @@ function EditPrompt() {
   const promptId = searchParams.get("id"); // Get ID from search params
 
   const [submitting, setSubmitting] = useState(false);
-  const [post, setPost] = useState<Post>({
+  const [post, setPost] = useState({
     prompt: "",
     tag: "",
   });
@@ -41,7 +40,7 @@ function EditPrompt() {
     }
   }, [promptId]);
 
-  const updatePrompt = async (e: FormEvent) => {
+  const updatePrompt = async (e: React.FormEvent) => {
     e.preventDefault();
 
     setSubmitting(true);
