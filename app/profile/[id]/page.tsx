@@ -6,7 +6,7 @@ import axios from "axios";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-function page({ params }: { params: { id: string } }) {
+function IDProfilePage({ params }: { params: { id: string } }) {
   const searchParams = useSearchParams();
   const username = searchParams.get("name") as string;
 
@@ -36,4 +36,4 @@ function page({ params }: { params: { id: string } }) {
   );
 }
 
-export default page;
+export default IDProfilePage;
