@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import Nav from "@components/Nav";
 import Provider from "@components/Provider";
 import { Session } from "next-auth";
+import type { AppProps } from "next/app";
+import type { LayoutProps } from "@.next/types/app/layout";
 
 export const metadata: Metadata = {
   title: "Prompt Central",
@@ -17,16 +19,15 @@ const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-interface Props {
+export default function RootLayout({
+  children,
+}: {
   children: React.ReactNode;
-  session: Session;
-}
-
-export default function RootLayout({ children, session }: Props) {
+}) {
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <Provider session={session}>
+        <Provider>
           <div className="main">
             <div className="gradient" />
           </div>
